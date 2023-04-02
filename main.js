@@ -26,7 +26,7 @@ const indicesOfFaces = [
 const geometry = new THREE.PolyhedronGeometry( verticesOfCube, indicesOfFaces, 6,3 );
 
 // const geometry = new THREE.SphereGeometry( 3,64,64 );  //its just the shape
-const material = new THREE.MeshStandardMaterial( { color: "#fff",roughness:0 ,wireframe: true } ); //how it looks like 
+const material = new THREE.MeshStandardMaterial( { color: "#fff",roughness:0 ,wireframe: true ,wireframeLinewidth: 1.0} ); //how it looks like 
 const polyhedron = new THREE.Mesh( geometry, material ); //it combines the geometry and the material to get a final mesh
 scene.add( polyhedron );
 
@@ -35,22 +35,51 @@ const sizes={
   width:window.innerWidth,
   height:window.innerHeight
 }
+var geo = new THREE.EdgesGeometry( geometry ); // or WireframeGeometry( geometry )
 
+var mat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5 } );
+
+var wireframe = new THREE.LineSegments( geo, mat );
+
+scene.add( wireframe );
 
 
 //light
-const light= new THREE.PointLight(0xffffff,1,100)
+const light= new THREE.PointLight(0xffffff,1,10000)
 light.position.set(20,20,20)
 light.intensity=5
 scene.add(light)
-// const light2=new THREE.PointLight(0xffffff,1,100)
-// light2.position.set(-20,-20,-20)
-// light2.intensity=5
-// scene.add(light2)
-
+const light2=new THREE.PointLight(0xffffff,1,100)
+light2.position.set(-20,-20,-20)
+light2.intensity=5
+scene.add(light2)
+const light3=new THREE.PointLight(0xffffff,1,100)
+light2.position.set(20,20,-20)
+light2.intensity=5
+scene.add(light3)
+const light4=new THREE.PointLight(0xffffff,1,100)
+light2.position.set(20,-20,20)
+light2.intensity=5
+scene.add(light4)
+const light5=new THREE.PointLight(0xffffff,1,100)
+light2.position.set(-20,20,20)
+light2.intensity=5
+scene.add(light5)
+const light6=new THREE.PointLight(0xffffff,1,100)
+light2.position.set(-20,-20,20)
+light2.intensity=5
+scene.add(light6)
+const light7=new THREE.PointLight(0xffffff,1,100)
+light2.position.set(-20,20,-20)
+light2.intensity=5
+scene.add(light7)
+const light8=new THREE.PointLight(0xffffff,1,100)
+light2.position.set(20,-20,-20)
+light2.intensity=5
+scene.add(light8)
 //Camera
-const camera = new THREE.PerspectiveCamera( 45 ,sizes.width/sizes.height,0.1,100 );  // parameters are field of view and aspect ratio --the width and height
-camera.position.z=30
+const camera = new THREE.PerspectiveCamera( 10 ,sizes.width/sizes.height,0.1,100 );  // parameters are field of view and aspect ratio --the width and height
+camera.position.z=100
 scene.add( camera );
 
 //renderer
